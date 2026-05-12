@@ -135,29 +135,3 @@ jobs:
             binaries/*/freebuff-*
           repository: CodebuffAI/codebuff-community
           token: ${{ secrets.CODEBUFF_GITHUB_TOKEN }}
-
-  publish-npm:
-    needs: [prepare-and-commit, create-release]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Download updated package
-        uses: actions/download-artifact@v8
-        with:
-          name: freebuff-updated-package
-          path: freebuff/cli/release/
-
-      - name: Set up Node.js for npm publishing
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org/
-
-      - name: Publish to npm
-        run: |
-          cd freebuff/cli/release
-          npm publish --access public --provenance
