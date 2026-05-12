@@ -42,5 +42,6 @@ export const createTestCliEnv = (overrides: Partial<CliEnv> = {}): CliEnv => ({
   CODEBUFF_RG_PATH: undefined,
   CODEBUFF_SCROLL_MULTIPLIER: undefined,
   FREEBUFF_MODE: undefined,
+  FREEBUFF_ADS_ENABLED: undefined,
   ...overrides,
 })

@@ -2,11 +2,14 @@ import type { ToolName } from '@codebuff/sdk'
 
 import { getCliEnv } from './env'
 
+const cliEnv = getCliEnv()
+
 /**
  * Freebuff build-time flag. When true, the CLI is built as Freebuff (free-only variant).
  * Injected via --define at compile time; enables dead-code elimination by the bundler.
  */
-export const IS_FREEBUFF = getCliEnv().FREEBUFF_MODE === 'true'
+export const IS_FREEBUFF = cliEnv.FREEBUFF_MODE === 'true'
+export const FREEBUFF_ADS_ENABLED = cliEnv.FREEBUFF_ADS_ENABLED !== 'false'
 
 /** Message shown when the user ends a freebuff session early. */
 export const END_SESSION_MESSAGE =

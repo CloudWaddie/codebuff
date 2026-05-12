@@ -18,6 +18,7 @@ import { useSheenAnimation } from '../hooks/use-sheen-animation'
 import { useTerminalDimensions } from '../hooks/use-terminal-dimensions'
 import { useTheme } from '../hooks/use-theme'
 import { exitFreebuffCleanly } from '../utils/freebuff-exit'
+import { FREEBUFF_ADS_ENABLED } from '../utils/constants'
 import {
   formatFreebuffPremiumResetCountdown,
   getFreebuffPremiumResetAt,
@@ -243,7 +244,7 @@ export const WaitingRoomScreen: React.FC<WaitingRoomScreenProps> = ({
   // which would otherwise block ads here since no conversation exists yet.
   // Try Gravity first, then fall back to ZeroClick when Gravity doesn't fill.
   const { ads, recordImpression } = useGravityAd({
-    enabled: true,
+    enabled: FREEBUFF_ADS_ENABLED,
     forceStart: true,
     provider: 'gravity',
     fallbackProvider: 'zeroclick',

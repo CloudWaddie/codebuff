@@ -39,6 +39,19 @@ async function getCountryAccess(
   req: NextRequest,
   deps: FreebuffSessionDeps,
 ): Promise<FreeModeCountryAccess> {
+  if (!env.FREE_MODE_COUNTRY_GATE_ENABLED) {
+    return {
+      allowed: true,
+      countryCode: null,
+      blockReason: null,
+      cfCountry: null,
+      geoipCountry: null,
+      ipPrivacy: { signals: [] },
+      hasClientIp: false,
+      clientIpHash: null,
+    }
+  }
+
   return (
     deps.getCountryAccess?.(req) ??
     getFreeModeCountryAccess(req, {

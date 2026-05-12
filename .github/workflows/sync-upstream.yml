@@ -1,0 +1,42 @@
+name: Sync Upstream
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: "Fork branch that carries customizations"
+        required: false
+        default: "main"
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    if: github.repository != 'CodebuffAI/codebuff'
+    runs-on: ubuntu-latest
+    env:
+      UPSTREAM_REPO: CodebuffAI/codebuff
+      UPSTREAM_BRANCH: main
+      TARGET_BRANCH: ${{ inputs.target_branch || 'main' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.target_branch || 'main' }}
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Merge upstream into fork branch
+        run: |
+          git remote add upstream "https://github.com/${UPSTREAM_REPO}.git"
+          git fetch upstream "${UPSTREAM_BRANCH}"
+          git checkout "${TARGET_BRANCH}"
+          git merge --no-edit "upstream/${UPSTREAM_BRANCH}"
+          git push origin "${TARGET_BRANCH}"

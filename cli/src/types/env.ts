@@ -74,6 +74,7 @@ export type CliEnv = BaseEnv & {
   CODEBUFF_SCROLL_MULTIPLIER?: string
   CODEBUFF_PERF_TEST?: string
   FREEBUFF_MODE?: string
+  FREEBUFF_ADS_ENABLED?: string
 }
 
 /**

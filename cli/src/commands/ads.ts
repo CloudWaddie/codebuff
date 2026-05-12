@@ -1,5 +1,5 @@
 import { useChatStore } from '../state/chat-store'
-import { IS_FREEBUFF } from '../utils/constants'
+import { FREEBUFF_ADS_ENABLED, IS_FREEBUFF } from '../utils/constants'
 import { logger } from '../utils/logger'
 import { getSystemMessage } from '../utils/message-history'
 import { saveSettings, loadSettings } from '../utils/settings'
@@ -36,7 +36,7 @@ export const handleAdsDisable = (): {
 }
 
 export const getAdsEnabled = (): boolean => {
-  if (IS_FREEBUFF) return true
+  if (IS_FREEBUFF) return FREEBUFF_ADS_ENABLED
 
   // Codebuff LITE is a paid mode now, so use the normal saved setting.
   const settings = loadSettings()

@@ -57,7 +57,11 @@ import { trackEvent } from './utils/analytics'
 import { showClipboardMessage } from './utils/clipboard'
 import { readClipboardImage } from './utils/clipboard-image'
 import { returnToFreebuffLanding } from './hooks/use-freebuff-session'
-import { END_SESSION_MESSAGE, IS_FREEBUFF } from './utils/constants'
+import {
+  END_SESSION_MESSAGE,
+  FREEBUFF_ADS_ENABLED,
+  IS_FREEBUFF,
+} from './utils/constants'
 import { getSystemMessage } from './utils/message-history'
 import { getInputModeConfig } from './utils/input-modes'
 
@@ -175,7 +179,7 @@ export const Chat = ({
   const hasSubscription = subscriptionData?.hasSubscription ?? false
 
   const { ads, recordImpression } = useGravityAd({
-    enabled: IS_FREEBUFF || !hasSubscription,
+    enabled: IS_FREEBUFF ? FREEBUFF_ADS_ENABLED : !hasSubscription,
     provider: 'gravity',
     fallbackProvider: 'zeroclick',
   })

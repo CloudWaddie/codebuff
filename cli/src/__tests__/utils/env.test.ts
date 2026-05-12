@@ -74,9 +74,11 @@ describe('cli/utils/env', () => {
     test('returns current process.env values for binary build config', () => {
       process.env.CODEBUFF_IS_BINARY = 'true'
       process.env.CODEBUFF_CLI_VERSION = '1.0.0'
+      process.env.FREEBUFF_ADS_ENABLED = 'false'
       const env = getCliEnv()
       expect(env.CODEBUFF_IS_BINARY).toBe('true')
       expect(env.CODEBUFF_CLI_VERSION).toBe('1.0.0')
+      expect(env.FREEBUFF_ADS_ENABLED).toBe('false')
     })
 
     test('returns undefined for unset env vars', () => {
@@ -111,6 +113,7 @@ describe('cli/utils/env', () => {
       expect(env.CURSOR_PORT).toBeUndefined()
       expect(env.IDE_CONFIG_DIR).toBeUndefined()
       expect(env.CODEBUFF_IS_BINARY).toBeUndefined()
+      expect(env.FREEBUFF_ADS_ENABLED).toBeUndefined()
     })
 
     test('allows overriding terminal detection vars', () => {
@@ -151,10 +154,12 @@ describe('cli/utils/env', () => {
         CODEBUFF_IS_BINARY: 'true',
         CODEBUFF_CLI_VERSION: '2.0.0',
         CODEBUFF_CLI_TARGET: 'darwin-arm64',
+        FREEBUFF_ADS_ENABLED: 'false',
       })
       expect(env.CODEBUFF_IS_BINARY).toBe('true')
       expect(env.CODEBUFF_CLI_VERSION).toBe('2.0.0')
       expect(env.CODEBUFF_CLI_TARGET).toBe('darwin-arm64')
+      expect(env.FREEBUFF_ADS_ENABLED).toBe('false')
     })
 
     test('allows overriding default values', () => {
