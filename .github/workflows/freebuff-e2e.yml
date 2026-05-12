@@ -27,6 +27,13 @@ jobs:
           SECRETS_CONTEXT: ${{ toJSON(secrets) }}
         run: |
           VAR_NAMES=$(bun scripts/generate-ci-env.ts --scope client)
+          echo "NEXT_PUBLIC_CODEBUFF_APP_URL=https://codebuff.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_SUPPORT_EMAIL=support@codebuff.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_POSTHOG_API_KEY=phc_test" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_POSTHOG_HOST_URL=https://us.i.posthog.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_dummy" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL=https://billing.stripe.com/p/login/test" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_WEB_PORT=3000" >> $GITHUB_ENV
           echo "$SECRETS_CONTEXT" | jq -r --argjson vars "$VAR_NAMES" '
             to_entries | .[] | select(.key as $k | $vars | index($k)) | .key + "=" + .value
           ' >> $GITHUB_ENV
@@ -155,6 +162,13 @@ jobs:
         shell: bash
         run: |
           VAR_NAMES=$(bun scripts/generate-ci-env.ts --scope client)
+          echo "NEXT_PUBLIC_CODEBUFF_APP_URL=https://codebuff.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_SUPPORT_EMAIL=support@codebuff.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_POSTHOG_API_KEY=phc_test" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_POSTHOG_HOST_URL=https://us.i.posthog.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_dummy" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL=https://billing.stripe.com/p/login/test" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_WEB_PORT=3000" >> $GITHUB_ENV
           echo "$SECRETS_CONTEXT" | jq -r --argjson vars "$VAR_NAMES" '
             to_entries | .[] | select(.key as $k | $vars | index($k)) | .key + "=" + .value
           ' >> $GITHUB_ENV
@@ -232,6 +246,13 @@ jobs:
           SECRETS_CONTEXT: ${{ toJSON(secrets) }}
         run: |
           VAR_NAMES=$(bun scripts/generate-ci-env.ts)
+          echo "NEXT_PUBLIC_CODEBUFF_APP_URL=https://codebuff.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_SUPPORT_EMAIL=support@codebuff.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_POSTHOG_API_KEY=phc_test" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_POSTHOG_HOST_URL=https://us.i.posthog.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_dummy" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL=https://billing.stripe.com/p/login/test" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_WEB_PORT=3000" >> $GITHUB_ENV
           echo "$SECRETS_CONTEXT" | jq -r --argjson vars "$VAR_NAMES" '
             to_entries | .[] | select(.key as $k | $vars | index($k)) | .key + "=" + .value
           ' >> $GITHUB_ENV

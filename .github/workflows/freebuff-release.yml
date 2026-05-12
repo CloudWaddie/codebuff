@@ -133,5 +133,5 @@ jobs:
             - `freebuff-win32-x64.tar.gz` - Windows x64
           files: |
             binaries/*/freebuff-*
-          repository: CodebuffAI/codebuff-community
-          token: ${{ secrets.CODEBUFF_GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          token: ${{ github.token }}
