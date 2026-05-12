@@ -279,9 +279,8 @@ export async function postChatCompletions(params: {
       logger,
     })
 
-    // For free mode requests, require a resolved allowlisted country unless
-    // this self-hosted deployment has explicitly disabled the gate.
-    if (isFreeModeRequest && env.FREE_MODE_COUNTRY_GATE_ENABLED) {
+    // For free mode requests, require a resolved allowlisted country.
+    if (isFreeModeRequest) {
       const countryAccess = await getFreeModeCountryAccess(req, {
         fetch,
         ipinfoToken: env.IPINFO_TOKEN,

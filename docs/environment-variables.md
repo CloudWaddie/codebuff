@@ -6,8 +6,7 @@
 - Server secrets: validated in `packages/internal/src/env-schema.ts` (used via `@codebuff/internal/env`).
 - Runtime/OS env: pass typed snapshots instead of reading `process.env` throughout the codebase.
 - `IPINFO_TOKEN` is required; free-mode country gating uses it to check IPinfo privacy signals for VPN/proxy/Tor/relay/hosting traffic.
-- `FREE_MODE_COUNTRY_GATE_ENABLED` defaults to `false` in this fork. Set it to `true` to enable the server-side free-mode country/IP reputation gate.
-- `FREEBUFF_ADS_ENABLED=false` disables Freebuff CLI ad fetching/rendering for self-hosted Freebuff builds.
+- `FREEBUFF_ADS_ENABLED` defaults to `false` in this fork. Set it to `true` to enable Freebuff CLI ad fetching/rendering.
 
 ## Env DI Helpers
 

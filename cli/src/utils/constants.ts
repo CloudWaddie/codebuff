@@ -9,7 +9,7 @@ const cliEnv = getCliEnv()
  * Injected via --define at compile time; enables dead-code elimination by the bundler.
  */
 export const IS_FREEBUFF = cliEnv.FREEBUFF_MODE === 'true'
-export const FREEBUFF_ADS_ENABLED = cliEnv.FREEBUFF_ADS_ENABLED !== 'false'
+export const FREEBUFF_ADS_ENABLED = cliEnv.FREEBUFF_ADS_ENABLED === 'true'
 
 /** Message shown when the user ends a freebuff session early. */
 export const END_SESSION_MESSAGE =

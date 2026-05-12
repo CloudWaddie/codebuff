@@ -165,7 +165,7 @@ async function main() {
     ['process.env.FREEBUFF_MODE', `"${process.env.FREEBUFF_MODE ?? 'false'}"`],
     [
       'process.env.FREEBUFF_ADS_ENABLED',
-      `"${process.env.FREEBUFF_ADS_ENABLED ?? 'true'}"`,
+      `"${process.env.FREEBUFF_ADS_ENABLED ?? 'false'}"`,
     ],
     ...nextPublicEnvVars,
   ]
